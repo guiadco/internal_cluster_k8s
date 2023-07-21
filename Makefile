@@ -8,6 +8,9 @@ ingress:
   		--selector=app.kubernetes.io/component=controller \
   		--timeout=90s
 
+cert-manager:
+	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.yaml
+
 qbittorrent:
 	helm repo add truecharts https://charts.truecharts.org/
 	helm install my-qbittorrent truecharts/qbittorrent --version 15.0.29
