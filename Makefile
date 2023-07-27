@@ -8,6 +8,10 @@ ingress:
   		--selector=app.kubernetes.io/component=controller \
   		--timeout=90s
 
+forecastle:
+	@printf "Install forecastle? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@kubectl apply -f https://raw.githubusercontent.com/stakater/Forecastle/master/deployments/kubernetes/forecastle.yaml
+
 cert-manager:
 	@printf "Install cert-manager? [y/N] " && read ans && [ $${ans:-N} = y ]
 	@helm repo add jetstack https://charts.jetstack.io
