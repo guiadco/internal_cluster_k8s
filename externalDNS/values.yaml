@@ -166,7 +166,7 @@ cloudflare:
   proxied: true
 ## @param domainFilters Limit possible target zones by domain suffixes (optional)
 ##
-domainFilters: ["geekhomeinside.com"]
+domainFilters: []
 ## @param excludeDomains Exclude subdomains (optional)
 ##
 excludeDomains: []
@@ -183,7 +183,7 @@ regexDomainExclusion: ""
 zoneNameFilters: []
 ## @param zoneIdFilters Limit possible target zones by zone id (optional)
 ##
-zoneIdFilters: ["828b4929fe83ca3edef26d80c17b482d"]
+zoneIdFilters: []
 ## @param annotationFilter Filter sources managed by external-dns via annotation using label selector (optional)
 ##
 annotationFilter: ""
@@ -207,7 +207,7 @@ logLevel: info
 logFormat: text
 ## @param policy Modify how DNS records are synchronized between sources and providers (options: sync, upsert-only )
 ##
-policy: upsert-only
+policy: sync
 ## @param registry Registry method to use (options: txt, aws-sd, noop)
 ## ref: https://github.com/kubernetes-sigs/external-dns/blob/master/docs/proposal/registry.md
 ##
