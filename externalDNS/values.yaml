@@ -103,7 +103,7 @@ args: []
 ## @param sources [array] K8s resources type to be observed for new DNS entries by ExternalDNS
 ##
 sources:
-  - crd
+  # - crd
   - service
   - ingress
   # - contour-httpproxy
