@@ -1869,7 +1869,9 @@ server:
     enabled: enable
     # -- Additional ingress annotations
     annotations: {
-      cert-manager.io/cluster-issuer: prod-issuer
+      cert-manager.io/cluster-issuer: prod-issuer,
+      app.kubernetes.io/name: external-dns,
+      app.kubernetes.io/instance: external-dns
     }
     # -- Additional ingress labels
     labels: {}
