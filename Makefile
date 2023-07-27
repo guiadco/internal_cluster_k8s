@@ -2,7 +2,7 @@ ingress:
 	@printf "Install nginx-ingress-controller? [y/N] " && read ans && [ $${ans:-N} = y ]
 	@helm repo add nginx-stable https://helm.nginx.com/stable
 	@helm repo update
-	@helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true
+	@helm upgrade --install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true
 	@kubectl wait --namespace ingress-nginx \
   		--for=condition=ready pod \
   		--selector=app.kubernetes.io/component=controller \
@@ -12,8 +12,8 @@ cert-manager:
 	@printf "Install cert-manager? [y/N] " && read ans && [ $${ans:-N} = y ]
 	@helm repo add jetstack https://charts.jetstack.io
 	@helm repo update
-	@helm install \
-		cert-manager jetstack/cert-manager \
+	@helm upgrade \
+		--install cert-manager jetstack/cert-manager \
 		--namespace cert-manager \
 		--create-namespace \
 		--version v1.12.0 \
@@ -23,7 +23,7 @@ external-DNS:
 	@printf "Install external-DNS? [y/N] " && read ans && [ $${ans:-N} = y ]
 	@helm repo add bitnami https://charts.bitnami.com/bitnami
 	@helm repo update
-	@helm install external-dns bitnami/external-dns -f externalDNS/values.yaml
+	@helm upgrade --install external-dns bitnami/external-dns -f externalDNS/values.yaml
 
 argocd:
 	@printf "Install argocd? [y/N] " && read ans && [ $${ans:-N} = y ]
