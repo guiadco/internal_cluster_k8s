@@ -116,7 +116,7 @@ forecastle:
     annotations: {}
     className: ~
     hosts:
-      - host: forecastle.example.com
+      - host: forecastle.geekhomeinside.com
         paths:
           - path: /
             pathType: Prefix
