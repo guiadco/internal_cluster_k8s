@@ -1866,13 +1866,15 @@ server:
 
   ingress:
     # -- Enable an ingress resource for the Argo CD server
-    enabled: false
+    enabled: enable
     # -- Additional ingress annotations
-    annotations: {}
+    annotations: {
+      cert-manager.io/cluster-issuer: prod-issuer
+    }
     # -- Additional ingress labels
     labels: {}
     # -- Defines which ingress controller will implement the resource
-    ingressClassName: ""
+    ingressClassName: "nginx"
 
     # -- List of ingress hosts
     ## Argo Ingress.
