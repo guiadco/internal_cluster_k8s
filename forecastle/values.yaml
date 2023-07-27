@@ -112,7 +112,7 @@ forecastle:
     annotations: {}
     expose: "false"
   ingress:
-    enabled: false
+    enabled: true
     annotations: {}
     className: ~
     hosts:
@@ -120,10 +120,11 @@ forecastle:
         paths:
           - path: /
             pathType: Prefix
-    #tls:
-    #- hosts:
-    #  - forecastle.example.com
-    #  secretName: ~
+    tls:
+      - hosts:
+        - forecastle.geekhomeinside.com
+        secretName: forecastle-tls
+
 
   route:
     enabled: false
