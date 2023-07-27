@@ -1,7 +1,7 @@
 ingress:
 	@printf "Install nginx-ingress-controller? [y/N] " && read ans && [ $${ans:-N} = y ]
-	@helm upgrade --install mginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress -f nginx-ingress/values.yaml --version 0.18.0
-	@kubectl wait --namespace ingress-nginx \
+	@helm upgrade --install nginx-ingress oci://ghcr.io/nginxinc/charts/nginx-ingress -f nginx-ingress/values.yaml --version 0.18.0
+	@kubectl wait --namespace nginx-ingress \
   		--for=condition=ready pod \
   		--selector=app.kubernetes.io/component=controller \
   		--timeout=90s
