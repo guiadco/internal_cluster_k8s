@@ -1,40 +1,73 @@
-cluster:
-	kind create cluster --config kind/config.yaml
+argocd:
+	@printf "Install argocd? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@kubectl create namespace argocd
+	@helm repo add argo https://argoproj.github.io/argo-helm
+	@helm repo update
+	@helm install argo-cd argo/argo-cd -f argocd/values.yaml --version 5.41.2
+
+argocd-password:
+	@echo Password: $$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
 ingress:
-	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-	kubectl wait --namespace ingress-nginx \
+	@printf "Install nginx-ingress-controller? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add nginx-stable https://helm.nginx.com/stable
+	@helm repo update
+	@helm install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true
+	@kubectl wait --namespace ingress-nginx \
   		--for=condition=ready pod \
   		--selector=app.kubernetes.io/component=controller \
   		--timeout=90s
 
+
 cert-manager:
-	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.0/cert-manager.yaml
+	@printf "Install cert-manager? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add jetstack https://charts.jetstack.io
+	@helm repo update
+	@helm install \
+		cert-manager jetstack/cert-manager \
+		--namespace cert-manager \
+		--create-namespace \
+		--version v1.12.0 \
+		--set installCRDs=true
 
 qbittorrent:
-	helm repo add truecharts https://charts.truecharts.org/
-	helm install my-qbittorrent truecharts/qbittorrent --version 15.0.29
+	@printf "Install qbittorrent? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add truecharts https://charts.truecharts.org/
+	@helm repo update
+	@helm install my-qbittorrent truecharts/qbittorrent --version 15.0.29
 
 flaresolvree:
-	helm repo add k8s-at-home https://k8s-at-home.com/charts/
-	helm install my-flaresolverr k8s-at-home/flaresolverr --version 5.4.2
+	@printf "Install flaresolverr? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add k8s-at-home https://k8s-at-home.com/charts/
+	@helm repo update
+	@helm install my-flaresolverr k8s-at-home/flaresolverr --version 5.4.2
 
 sonarr:
-	helm repo add k8s-at-home https://k8s-at-home.com/charts/
-	helm install my-sonarr k8s-at-home/sonarr --version 16.3.2
+	@printf "Install sonarr? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add k8s-at-home https://k8s-at-home.com/charts/
+	@helm repo update
+	@helm install my-sonarr k8s-at-home/sonarr --version 16.3.2
 
 radarr:
-	helm repo add k8s-at-home https://k8s-at-home.com/charts/
-	helm install my-radarr k8s-at-home/radarr --version 16.3.2
+	@printf "Install radarr? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add k8s-at-home https://k8s-at-home.com/charts/
+	@helm repo update
+	@helm install my-radarr k8s-at-home/radarr --version 16.3.2
 
 prowlarr:
-	helm repo add truecharts https://truecharts.org/
-	helm install my-prowlarr truecharts/prowlarr --version 11.0.32
+	@printf "Install prowlarr? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add truecharts https://truecharts.org/ || true
+	@helm repo update
+	@helm install my-prowlarr truecharts/prowlarr --version 11.0.32
 
 jellyfin:
-	helm repo add k8s-at-home https://k8s-at-home.com/charts/
-	helm install my-jellyfin k8s-at-home/jellyfin --version 9.5.3
+	@printf "Install jellyfin? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add k8s-at-home https://k8s-at-home.com/charts/
+	@helm repo update
+	@helm install my-jellyfin k8s-at-home/jellyfin --version 9.5.3
 
 jellyseer:
-	helm repo add qjoly https://qjoly.github.io/helm-charts/
-	helm install my-jellyseer qjoly/jellyseer --version 1.0.0
+	@printf "Install jellyseer? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add qjoly https://qjoly.github.io/helm-charts/
+	@helm repo update
+	@helm install my-jellyseer qjoly/jellyseer --version 1.0.0
