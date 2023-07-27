@@ -1,12 +1,3 @@
-argocd:
-	@printf "Install argocd? [y/N] " && read ans && [ $${ans:-N} = y ]
-	@helm repo add argo https://argoproj.github.io/argo-helm
-	@helm repo update
-	@helm upgrade --install argo-cd argo/argo-cd -f argo/values.yaml --version 5.41.2
-
-argocd-password:
-	@echo Password: $$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-
 ingress:
 	@printf "Install nginx-ingress-controller? [y/N] " && read ans && [ $${ans:-N} = y ]
 	@helm repo add nginx-stable https://helm.nginx.com/stable
@@ -16,7 +7,6 @@ ingress:
   		--for=condition=ready pod \
   		--selector=app.kubernetes.io/component=controller \
   		--timeout=90s
-
 
 cert-manager:
 	@printf "Install cert-manager? [y/N] " && read ans && [ $${ans:-N} = y ]
@@ -28,6 +18,21 @@ cert-manager:
 		--create-namespace \
 		--version v1.12.0 \
 		--set installCRDs=true
+
+external-DNS:
+	@printf "Install external-DNS? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add bitnami https://charts.bitnami.com/bitnami
+	@helm repo update
+	@helm install external-dns bitnami/external-dns -f externalDNS/values.yaml
+
+argocd:
+	@printf "Install argocd? [y/N] " && read ans && [ $${ans:-N} = y ]
+	@helm repo add argo https://argoproj.github.io/argo-helm
+	@helm repo update
+	@helm upgrade --install argo-cd argo/argo-cd -f argo/values.yaml --version 5.41.2
+
+argocd-password:
+	@echo Password: $$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
 qbittorrent:
 	@printf "Install qbittorrent? [y/N] " && read ans && [ $${ans:-N} = y ]
