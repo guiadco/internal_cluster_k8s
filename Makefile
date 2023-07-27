@@ -1,9 +1,8 @@
 argocd:
 	@printf "Install argocd? [y/N] " && read ans && [ $${ans:-N} = y ]
-	@kubectl create namespace argocd
 	@helm repo add argo https://argoproj.github.io/argo-helm
 	@helm repo update
-	@helm install argo-cd argo/argo-cd -f argocd/values.yaml --version 5.41.2
+	@helm install argo-cd argo/argo-cd -f argo/values.yaml --version 5.41.2
 
 argocd-password:
 	@echo Password: $$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
