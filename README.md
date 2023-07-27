@@ -1,17 +1,11 @@
 # Installation
 
-```sh
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-```
-
-- test
-
-```sh
-kubectl wait --namespace ingress-nginx \
-  --for=condition=ready pod \
-  --selector=app.kubernetes.io/component=controller \
-  --timeout=90s
-```
+- https://kubernetes.io/fr/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+- https://github.com/cri-o/cri-o/blob/main/install.md
+- https://src.fedoraproject.org/rpms/runc
+- Cilium
+- Cert-Manager
+- Cloudflare API Token
 
 - In progress
 
