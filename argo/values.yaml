@@ -1870,8 +1870,8 @@ server:
     # -- Additional ingress annotations
     annotations: {
       cert-manager.io/cluster-issuer: prod-issuer,
-      app.kubernetes.io/name: external-dns,
-      app.kubernetes.io/instance: external-dns
+      external-dns.alpha.kubernetes.io/hostname: argocd.geekhomeinside.com,
+      external-dns.alpha.kubernetes.io/ttl: "120" #optional
     }
     # -- Additional ingress labels
     labels: {}
@@ -1901,10 +1901,10 @@ server:
       #         name: use-annotation
 
     # -- Ingress TLS configuration
-    tls: []
-      # - secretName: your-certificate-name
-      #   hosts:
-      #     - argocd.example.com
+    tls:
+      - secretName: argocd-tls
+        hosts:
+          - argocd.geekhomeinside.com
 
     # -- Uses `server.service.servicePortHttps` instead `server.service.servicePortHttp`
     https: false

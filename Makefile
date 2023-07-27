@@ -8,9 +8,11 @@ ingress:
   		--selector=app.kubernetes.io/component=controller \
   		--timeout=90s
 
-forecastle:
+forecastle-helm:
 	@printf "Install forecastle? [y/N] " && read ans && [ $${ans:-N} = y ]
-	@kubectl apply -f https://raw.githubusercontent.com/stakater/Forecastle/master/deployments/kubernetes/forecastle.yaml
+	@helm repo add stakater https://stakater.github.io/stakater-charts
+	@helm repo update
+	@helm upgrade --install my-forecastle stakater/forecastle -f forecastle/values.yaml --version 1.0.128
 
 cert-manager:
 	@printf "Install cert-manager? [y/N] " && read ans && [ $${ans:-N} = y ]
