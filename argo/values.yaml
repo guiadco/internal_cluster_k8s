@@ -1880,8 +1880,8 @@ server:
     ## Argo Ingress.
     ## Hostnames must be provided if Ingress is enabled.
     ## Secrets must be manually created in the namespace
-    hosts: []
-      # - argocd.example.com
+    hosts:
+      - argocd.geekhomeinside.com
 
     # -- List of ingress paths
     paths:
