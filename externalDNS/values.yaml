@@ -180,10 +180,10 @@ regexDomainFilter: ""
 regexDomainExclusion: ""
 ## @param zoneNameFilters Filter target zones by zone domain (optional)
 ##
-zoneNameFilters: ["828b4929fe83ca3edef26d80c17b482d"]
+zoneNameFilters: []
 ## @param zoneIdFilters Limit possible target zones by zone id (optional)
 ##
-zoneIdFilters: []
+zoneIdFilters: ["828b4929fe83ca3edef26d80c17b482d"]
 ## @param annotationFilter Filter sources managed by external-dns via annotation using label selector (optional)
 ##
 annotationFilter: ""
