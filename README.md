@@ -6,16 +6,19 @@
 - Cilium
 - Cert-Manager
 - Cloudflare API Token
+- CSI:
+  - rook ?
+  - CubeFS ?
 
-- In progress
+# Deployment made with argocd
 
-```sh
-Jellyfin
-Jellyseerr
-Prowlarr
-Radarr
-Sonarr
-Qbittorrent web
-Flaresolverr
-Joal
-```
+
+| Application  | Repository                      | Version |
+| ------------ | ------------------------------- | ------- |
+| qbittorrent  | https://charts.truecharts.org/  | 15.0.29 |
+| flaresolverr | https://k8s-at-home.com/charts/ | 5.4.2   |
+| sonarr       | https://k8s-at-home.com/charts/ | 16.3.2  |
+| radarr       | https://k8s-at-home.com/charts/ | 16.3.2  |
+| prowlarr     | https://charts.truecharts.org/  | 11.0.32 |
+| jellyfin     | https://k8s-at-home.com/charts/ | 9.5.3   |
+| jellyseer    | https://qjoly.github.io/helm-charts/ | 1.0.0   |
