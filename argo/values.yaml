@@ -1873,7 +1873,7 @@ server:
       nginx.ingress.kubernetes.io/ssl-passthrough: "true",
       forecastle.stakater.com/appName: ArgoCD,
       forecastle.stakater.com/expose: "true",
-      forecastle.stakater.com/icon: https://argoproj.github.io/argo-cd/assets/argo.png
+      forecastle.stakater.com/icon: https://argo-cd.readthedocs.io/en/stable/assets/argo.png
     }
     # -- Additional ingress labels
     labels: {}
