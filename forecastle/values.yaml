@@ -86,7 +86,8 @@ forecastle:
         # The CP(s) port.
         masterPort: 443
   config:
-    namespaceSelector: ["any"]
+    namespaceSelector:
+      any: true
     headerBackground:
     headerForeground:
     title:
