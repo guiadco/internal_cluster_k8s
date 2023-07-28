@@ -113,7 +113,9 @@ forecastle:
     expose: "false"
   ingress:
     enabled: true
-    annotations: {}
+    annotations: {
+      cert-manager.io/cluster-issuer: prod-issuer
+    }
     className: ~
     hosts:
       - host: forecastle.geekhomeinside.com
