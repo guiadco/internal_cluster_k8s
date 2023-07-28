@@ -1870,7 +1870,10 @@ server:
     # -- Additional ingress annotations
     annotations: {
       cert-manager.io/cluster-issuer: prod-issuer,
-      external-dns.alpha.kubernetes.io/hostname: "argocd.geekhomeinside.com",
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true",
+      forecastle.stakater.com/appName: ArgoCD,
+      forecastle.stakater.com/expose: "true",
+      forecastle.stakater.com/icon: https://argoproj.github.io/argo-cd/assets/argo.png
     }
     # -- Additional ingress labels
     labels: {}
