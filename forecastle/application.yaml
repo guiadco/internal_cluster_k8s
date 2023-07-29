@@ -5,14 +5,17 @@ metadata:
   namespace: default
 spec:
   project: default
-  source:
-    chart: forecastle
-    repoURL: https://stakater.github.io/stakater-charts
-    targetRevision: 1.0.128
-    helm:
-      valueFiles:
-      - values.yaml
-      releaseName: forecastle
+  sources:
+    - repoURL: https://stakater.github.io/stakater-charts
+      chart: forecastle
+      targetRevision: 1.0.128
+      helm:
+        valueFiles:
+        - $values/forecastle/values.yaml
+        releaseName: forecastle
+    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
+      targetRevision: HEAD
+      ref: values
   destination:
     server: "https://kubernetes.default.svc"
     namespace: forecastle
