@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flaresolverr
+  namespace: default
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.truecharts.org/
+      chart: flaresolverr
+      targetRevision: 9.0.28
+      helm:
+        valueFiles:
+        - $values/flaresolverr/values.yaml
+        releaseName: flaresolverr
+    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
+      targetRevision: HEAD
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
