@@ -61,3 +61,10 @@ cert-manager-issuer:
 	@printf "Deploy cert-manager-issuer app"
 	@kubectl apply -f cert-manager-issuer/cluster-prod-issuer.yaml
 	@kubectl apply -f cert-manager-issuer/cluster-staging-issuer.yaml
+
+kube-prometheus-stack:
+	@printf "Install kube-prometheus-stack app"
+	
+	@helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+	@helm repo update
+	@helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f kube-prometheus-stack/values.yaml --version 16.12.0
