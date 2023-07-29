@@ -1,4 +1,4 @@
-.PHONY: jellyfin jellyseerr prowlarr qbittorrent radarr sonarr nginx-ingress forecastle flaresolverr external-dns cert-manager longhorn cert-manager-issuer
+.PHONY: jellyfin jellyseerr prowlarr qbittorrent radarr sonarr nginx-ingress forecastle flaresolverr external-dns cert-manager longhorn cert-manager-issuer kube-prometheus-stack
 argocd:
 	@printf "Install argocd? [y/N] " && read ans && [ $${ans:-N} = y ]
 	@helm repo add argo https://argoproj.github.io/argo-helm
@@ -64,7 +64,4 @@ cert-manager-issuer:
 
 kube-prometheus-stack:
 	@printf "Install kube-prometheus-stack app"
-	
-	@helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-	@helm repo update
-	@helm upgrade --install kube-prometheus-stack prometheus-community/kube-prometheus-stack -f kube-prometheus-stack/values.yaml --version 16.12.0
+	@kubectl apply -f kube-prometheus-stack/application.yaml

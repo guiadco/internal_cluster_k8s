@@ -337,11 +337,12 @@ alertmanager:
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
     # ingressClassName: nginx
 
-    annotations: {
-      cert-manager.io/cluster-issuer: prod-issuer,
-      forecastle.stakater.com/appName: Kube-Prometheus-Stack,
-      forecastle.stakater.com/expose: "true"
-    }
+    annotations:
+      {
+        cert-manager.io/cluster-issuer: prod-issuer,
+        forecastle.stakater.com/appName: Alert-Manager,
+        forecastle.stakater.com/expose: "true",
+      }
 
     labels: {}
 
@@ -354,8 +355,7 @@ alertmanager:
     ## Hosts must be provided if Ingress is enabled.
     ##
     hosts:
-      []
-      # - alertmanager.domain.com
+      - alertmanager.geekhomeinside.com
 
     ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
     ##
@@ -369,10 +369,10 @@ alertmanager:
     ## TLS configuration for Alertmanager Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: []
-    # - secretName: alertmanager-general-tls
-    #   hosts:
-    #   - alertmanager.example.com
+    tls:
+      - secretName: alertmanager-general-tls
+        hosts:
+          - alertmanager.geekhomeinside.com
 
   ## Configuration for Alertmanager secret
   ##
@@ -888,7 +888,7 @@ grafana:
   ingress:
     ## If true, Grafana Ingress will be created
     ##
-    enabled: false
+    enabled: true
 
     ## IngressClassName for Grafana Ingress.
     ## Should be provided if Ingress is enable.
@@ -898,7 +898,11 @@ grafana:
     ## Annotations for Grafana Ingress
     ##
     annotations:
-      {}
+      {
+        cert-manager.io/cluster-issuer: prod-issuer,
+        forecastle.stakater.com/appName: Grafana,
+        forecastle.stakater.com/expose: "true",
+      }
       # kubernetes.io/ingress.class: nginx
       # kubernetes.io/tls-acme: "true"
 
@@ -911,7 +915,8 @@ grafana:
     ##
     # hosts:
     #   - grafana.domain.com
-    hosts: []
+    hosts:
+      - grafana.geekhomeinside.com
 
     ## Path for grafana ingress
     path: /
@@ -919,10 +924,10 @@ grafana:
     ## TLS configuration for grafana Ingress
     ## Secret must be manually created in the namespace
     ##
-    tls: []
-    # - secretName: grafana-general-tls
-    #   hosts:
-    #   - grafana.example.com
+    tls:
+      - secretName: grafana-general-tls
+        hosts:
+          - grafana.geekhomeinside.com
 
   sidecar:
     dashboards:
@@ -2688,13 +2693,18 @@ prometheus:
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
   ingress:
-    enabled: false
+    enabled: true
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
     # ingressClassName: nginx
 
-    annotations: {}
+    annotations:
+      {
+        cert-manager.io/cluster-issuer: prod-issuer,
+        forecastle.stakater.com/appName: Prometheus,
+        forecastle.stakater.com/expose: "true",
+      }
     labels: {}
 
     ## Redirect ingress to an additional defined port on the service
@@ -2705,7 +2715,8 @@ prometheus:
     ##
     # hosts:
     #   - prometheus.domain.com
-    hosts: []
+    hosts:
+      - prometheus.geekhomeinside.com
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##
@@ -2720,10 +2731,9 @@ prometheus:
     ## Secret must be manually created in the namespace
     ##
     tls:
-      []
-      # - secretName: prometheus-general-tls
-      #   hosts:
-      #     - prometheus.example.com
+      - secretName: prometheus-general-tls
+        hosts:
+          - prometheus.geekhomeinside.com
 
   ## Configuration for creating an Ingress that will map to each Prometheus replica service
   ## prometheus.servicePerReplica must be enabled
