@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: oci://ghcr.io/nginxinc/charts/nginx-ingress
+    - repoURL: ghcr.io/nginxinc/charts/nginx-ingress
       chart: nginx-ingress
       targetRevision: 0.18.0
       helm:
