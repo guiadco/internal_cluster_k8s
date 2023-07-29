@@ -1,3 +1,4 @@
+.PHONY+=jellyfin jellyseerr prowlarr qbittorrent radarr sonarr nginx-ingress forecastle flaresolverr external-dns cert-manager longhorn cert-manager-issuer
 argocd:
 	@printf "Install argocd? [y/N] " && read ans && [ $${ans:-N} = y ]
 	@helm repo add argo https://argoproj.github.io/argo-helm
