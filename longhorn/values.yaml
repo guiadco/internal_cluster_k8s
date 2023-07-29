@@ -285,7 +285,7 @@ enablePSP: false
 
 ## Specify override namespace, specifically this is useful for using longhorn as sub-chart
 ## and its release namespace is not the `longhorn-system`
-namespaceOverride: ""
+namespaceOverride: "longhorn"
 
 # Annotations to add to the Longhorn Manager DaemonSet Pods. Optional.
 annotations: {}
