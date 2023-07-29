@@ -8,7 +8,7 @@ forecastle:
     name: stakater/forecastle
     tag: v1.0.128
   deployment:
-    replicas: 1
+    replicas: 3
     revisionHistoryLimit: 2
     annotations: {}
     affinity: {}
