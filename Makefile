@@ -51,6 +51,11 @@ cert-manager:
 	@printf "Install cert-manager app"
 	@kubectl apply -f cert-manager/application.yaml
 
+longhorn:
+	@printf "Install longhorn app"
+	@kubectl apply -f longhorn/application.yaml
+
+
 cert-manager-issuer:
 	@printf "Deploy cert-manager-issuer app"
 	@kubectl apply -f cert-manager-issuer/cluster-prod-issuer.yaml
