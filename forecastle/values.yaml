@@ -115,7 +115,7 @@ forecastle:
     annotations: {
       cert-manager.io/cluster-issuer: prod-issuer
     }
-    className: ~
+    className: nginx
     hosts:
       - host: forecastle.geekhomeinside.com
         paths:
