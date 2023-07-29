@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jellyseerr
+  namespace: default
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.truecharts.org/
+      chart: jellyseerr
+      targetRevision: 5.0.24
+      helm:
+        valueFiles:
+        - $values/jellyseerr/values.yaml
+        releaseName: jellyseerr
+    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
+      targetRevision: HEAD
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-ingress
+  namespace: default
+spec:
+  project: default
+  sources:
+    - repoURL: oci://ghcr.io/nginxinc/charts/nginx-ingress
+      chart: nginx-ingress
+      targetRevision: 0.18.0
+      helm:
+        valueFiles:
+        - $values/nginx-ingress/values.yaml
+        releaseName: nginx-ingress
+    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
+      targetRevision: HEAD
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
