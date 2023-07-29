@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: forecastle
+  namespace: default
+spec:
+  project: default
+  source:
+    chart: forecastle
+    repoURL: https://stakater.github.io/stakater-charts
+    targetRevision: 1.0.128
+    helm:
+      valueFiles:
+      - values.yaml
+      releaseName: forecastle
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: forecastle
