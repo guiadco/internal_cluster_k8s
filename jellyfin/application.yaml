@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jellyfin
+  namespace: default
+spec:
+  project: default
+  sources:
+    - repoURL: https://charts.truecharts.org/
+      chart: jellyfin
+      targetRevision: 14.1.11
+      helm:
+        valueFiles:
+        - $values/jellyfin/values.yaml
+        releaseName: jellyfin
+    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
+      targetRevision: HEAD
+      ref: values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
