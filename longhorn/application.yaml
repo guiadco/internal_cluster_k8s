@@ -1,24 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
+  name: longhorn
   namespace: default
 spec:
   project: default
   sources:
-    - repoURL: https://helm.nginx.com/stable
-      chart: nginx-ingress
-      targetRevision: 0.18.0
+    - repoURL: https://charts.longhorn.io
+      chart: longhorn
+      targetRevision: 1.5.1
       helm:
         valueFiles:
-        - $values/nginx-ingress/values.yaml
-        releaseName: nginx-ingress
+        - $values/longhorn/values.yaml
+        releaseName: longhorn
     - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
       targetRevision: HEAD
       ref: values
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: default
+    namespace: longhorn-system
   syncPolicy:
     automated:
       prune: true

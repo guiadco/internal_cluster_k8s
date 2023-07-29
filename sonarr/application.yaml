@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
+  name: sonarr
   namespace: default
 spec:
   project: default
   sources:
-    - repoURL: https://helm.nginx.com/stable
-      chart: nginx-ingress
-      targetRevision: 0.18.0
+    - repoURL: https://charts.truecharts.org/
+      chart: sonarr
+      targetRevision: 15.1.2
       helm:
         valueFiles:
-        - $values/nginx-ingress/values.yaml
-        releaseName: nginx-ingress
+        - $values/sonarr/values.yaml
+        releaseName: sonarr
     - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
       targetRevision: HEAD
       ref: values

@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-ingress
+  name: prowlarr
   namespace: default
 spec:
   project: default
   sources:
-    - repoURL: https://helm.nginx.com/stable
-      chart: nginx-ingress
-      targetRevision: 0.18.0
+    - repoURL: https://charts.truecharts.org/
+      chart: prowlarr
+      targetRevision: 11.1.1
       helm:
         valueFiles:
-        - $values/nginx-ingress/values.yaml
-        releaseName: nginx-ingress
+        - $values/prowlarr/values.yaml
+        releaseName: prowlarr
     - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
       targetRevision: HEAD
       ref: values
