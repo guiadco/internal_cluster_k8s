@@ -6,7 +6,7 @@ argocd:
 	@helm upgrade --install argo-cd argo/argo-cd -f argo/values.yaml --version 5.41.2
 
 argocd-password:
-	@echo Password: $$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+	@echo Password: $$(kubectl get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
 jellyfin:
 	@printf "Deploy jellyfin app"
