@@ -92,4 +92,3 @@ cp /etc/letsencrypt/live/geekhomeinside.com/privkey.pem /etc/cockpit/ws-certs.d/
 echo "Restarting Cockpit"
 systemctl restart cockpit
 ```
-
