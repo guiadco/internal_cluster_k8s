@@ -5,7 +5,7 @@
 - setup cloudflare and certbot
 
 ```
-dnf install python3-certbot python3-certbot-dns-cloudflare
+dnf install certbot python3-certbot python3-certbot-dns-cloudflare
 ```
 
 - register ACME account
