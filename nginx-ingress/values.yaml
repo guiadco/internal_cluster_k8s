@@ -38,7 +38,7 @@ controller:
     memory: 0
 
   ## Enables the Ingress Controller pods to use the host's network namespace.
-  hostNetwork: true
+  hostNetwork: false
 
   ## DNS policy for the Ingress Controller pods
   dnsPolicy: ClusterFirst
@@ -284,7 +284,7 @@ controller:
     create: true
 
     ## The type of service to create for the Ingress Controller.
-    type: NodePort
+    type: LoadBalancer
 
     ## The externalTrafficPolicy of the service. The value Local preserves the client source IP.
     externalTrafficPolicy: Local
