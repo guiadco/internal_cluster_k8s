@@ -180,7 +180,7 @@ aws:
       key: "aws_secret_access_key"
   ## @param aws.region When using the AWS provider, `AWS_DEFAULT_REGION` to set in the environment (optional)
   ##
-  region: "eu-west-1"
+  region: "us-east-1"
   ## @param aws.zoneType When using the AWS provider, filter for zones of this type (optional, options: public, private)
   ##
   zoneType: "public"
