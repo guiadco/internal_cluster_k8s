@@ -113,7 +113,8 @@ forecastle:
   ingress:
     enabled: true
     annotations: {
-      cert-manager.io/cluster-issuer: prod-issuer
+      cert-manager.io/cluster-issuer: prod-issuer,
+      kubernetes.io/ingress.class: nginx
     }
     className: nginx
     hosts:
