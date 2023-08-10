@@ -485,7 +485,7 @@ containerSecurityContext: {}
 ##
 podSecurityContext:
   enabled: true
-  fsGroup: 1001
+  fsGroup: 65534
   runAsUser: 1001
 ## Container resource requests and limits
 ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
