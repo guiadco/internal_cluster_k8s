@@ -104,14 +104,14 @@ args: []
 ##
 sources:
   # - crd
-  # - service
+  - service
   - ingress
   # - contour-httpproxy
 ## @param provider DNS provider where the DNS records will be created.
 ## Available providers are:
 ## - akamai, alibabacloud, aws, azure, azure-private-dns, cloudflare, coredns, designate, digitalocean, google, hetzner, infoblox, linode, rfc2136, transip, oci
 ##
-provider: cloudflare
+provider: aws
 ## @param initContainers Attach additional init containers to the pod (evaluated as a template)
 ##
 initContainers: []
@@ -145,25 +145,70 @@ publishHostIP: false
 ## @param serviceTypeFilter The service types to take care about (default: all, options: ClusterIP, NodePort, LoadBalancer, ExternalName)
 ##
 serviceTypeFilter: []
-## Cloudflare configuration to be set via arguments/env. variables
+## AWS configuration to be set via arguments/env. variables
 ##
-cloudflare:
-  ## @param cloudflare.apiToken When using the Cloudflare provider, `CF_API_TOKEN` to set (optional)
+aws:
+  ## AWS credentials
+  ## @param aws.credentials.secretKey When using the AWS provider, set `aws_secret_access_key` in the AWS credentials (optional)
+  ## @param aws.credentials.accessKey When using the AWS provider, set `aws_access_key_id` in the AWS credentials (optional)
+  ## @param aws.credentials.mountPath When using the AWS provider, determine `mountPath` for `credentials` secret
   ##
-  apiToken: ""
-  ## @param cloudflare.apiKey When using the Cloudflare provider, `CF_API_KEY` to set (optional)
+  credentials:
+    secretKey: ""
+    accessKey: ""
+    ## Before external-dns 0.5.9 home dir should be `/root/.aws`
+    ##
+    mountPath: "/.aws"
+    ## @param aws.credentials.secretName Use an existing secret with key "credentials" defined.
+    ## This ignores aws.credentials.secretKey, and aws.credentials.accessKey
+    ##
+    secretName: "aws-token"
+    ## AWS access key id stored in key-value secret.
+    ## If aws.credentials.accessKeyIDSecretRef and aws.credentials.secretAccessKeySecretRef defined aws.credentials.secretKey, aws.credentials.accessKey and aws.credentials.secretName are ignored
+    ## @param aws.credentials.accessKeyIDSecretRef.name Define the name of the secret that stores aws_access_key_id.
+    ## @param aws.credentials.accessKeyIDSecretRef.key Define the key of the secret that stores aws_access_key_id.
+    ##
+    accessKeyIDSecretRef:
+      name: "aws-token"
+      key: "aws_access_key_id"
+    ## AWS secret access key stored in key-value secret
+    ## @param aws.credentials.secretAccessKeySecretRef.name Define the name of the secret that stores aws_secret_access_key
+    ## @param aws.credentials.secretAccessKeySecretRef.key Define the key of the secret that stores aws_secret_access_key
+    ##
+    secretAccessKeySecretRef:
+      name: "aws-token"
+      key: "aws_secret_access_key"
+  ## @param aws.region When using the AWS provider, `AWS_DEFAULT_REGION` to set in the environment (optional)
   ##
-  apiKey: ""
-  ## @param cloudflare.secretName When using the Cloudflare provider, it's the name of the secret containing cloudflare_api_token or cloudflare_api_key.
-  ## This ignores cloudflare.apiToken, and cloudflare.apiKey
+  region: "eu-west-1"
+  ## @param aws.zoneType When using the AWS provider, filter for zones of this type (optional, options: public, private)
   ##
-  secretName: "cloudflare-api-token-externaldns-secret"
-  ## @param cloudflare.email When using the Cloudflare provider, `CF_API_EMAIL` to set (optional). Needed when using CF_API_KEY
+  zoneType: "public"
+  ## @param aws.assumeRoleArn When using the AWS provider, assume role by specifying --aws-assume-role to the external-dns daemon
   ##
-  email: "guiadco@geekhomeinside.com"
-  ## @param cloudflare.proxied When using the Cloudflare provider, enable the proxy feature (DDOS protection, CDN...) (optional)
+  assumeRoleArn: ""
+  ## @param aws.roleArn Specify role ARN to the external-dns daemon
   ##
-  proxied: true
+  roleArn: ""
+  ## @param aws.apiRetries Maximum number of retries for AWS API calls before giving up
+  ##
+  apiRetries: 3
+  ## @param aws.batchChangeSize When using the AWS provider, set the maximum number of changes that will be applied in each batch
+  ##
+  batchChangeSize: 1000
+  ## @param aws.zonesCacheDuration If the list of Route53 zones managed by ExternalDNS doesn't change frequently, cache it by setting a TTL
+  ## (default 0 - disabled, can be set to time interval like 1m or 1h)
+  ##
+  zonesCacheDuration: 0
+  ## @param aws.zoneTags When using the AWS provider, filter for zones with these tags
+  ##
+  zoneTags: []
+  ## @param aws.preferCNAME When using the AWS provider, replaces Alias records with CNAME (options: true, false)
+  ##
+  preferCNAME: ""
+  ## @param aws.evaluateTargetHealth When using the AWS provider, sets the evaluate target health flag (options: true, false)
+  ##
+  evaluateTargetHealth: ""
 ## @param domainFilters Limit possible target zones by domain suffixes (optional)
 ##
 domainFilters: []
