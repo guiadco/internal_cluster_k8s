@@ -1,0 +1,24 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: dummy-pool
+spec:
+  addresses:
+  # https://kind.sigs.k8s.io/docs/user/loadbalancer/
+  # docker network inspect -f '{{.IPAM.Config}}' kind
+  # [{172.25.0.0/16  172.25.0.1 map[]} {fc00:f853:ccd:e793::/64  fc00:f853:ccd:e793::1 map[]}]
+  - 192.168.1.201/32
+  - 192.168.1.202/31
+  - 192.168.1.204/30
+  - 192.168.1.208/28
+  - 192.168.1.224/28
+  - 192.168.1.240/29
+  - 192.168.1.248/30
+  - 192.168.1.252/31
+    
+---
+
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: dummy-pool
