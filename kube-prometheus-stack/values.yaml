@@ -355,7 +355,7 @@ alertmanager:
     ## Hosts must be provided if Ingress is enabled.
     ##
     hosts:
-      - alertmanager.geekhomeinside.com
+      - alertmanager.geekhomeinside.io
 
     ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
     ##
@@ -372,7 +372,7 @@ alertmanager:
     tls:
       - secretName: alertmanager-general-tls
         hosts:
-          - alertmanager.geekhomeinside.com
+          - alertmanager.geekhomeinside.io
 
   ## Configuration for Alertmanager secret
   ##
@@ -916,7 +916,7 @@ grafana:
     # hosts:
     #   - grafana.domain.com
     hosts:
-      - grafana.geekhomeinside.com
+      - grafana.geekhomeinside.io
 
     ## Path for grafana ingress
     path: /
@@ -927,7 +927,7 @@ grafana:
     tls:
       - secretName: grafana-general-tls
         hosts:
-          - grafana.geekhomeinside.com
+          - grafana.geekhomeinside.io
 
   sidecar:
     dashboards:
@@ -2716,7 +2716,7 @@ prometheus:
     # hosts:
     #   - prometheus.domain.com
     hosts:
-      - prometheus.geekhomeinside.com
+      - prometheus.geekhomeinside.io
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##
@@ -2733,7 +2733,7 @@ prometheus:
     tls:
       - secretName: prometheus-general-tls
         hosts:
-          - prometheus.geekhomeinside.com
+          - prometheus.geekhomeinside.io
 
   ## Configuration for creating an Ingress that will map to each Prometheus replica service
   ## prometheus.servicePerReplica must be enabled

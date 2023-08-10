@@ -117,13 +117,13 @@ forecastle:
     }
     className: nginx
     hosts:
-      - host: forecastle.geekhomeinside.com
+      - host: forecastle.geekhomeinside.io
         paths:
           - path: /
             pathType: Prefix
     tls:
       - hosts:
-        - forecastle.geekhomeinside.com
+        - forecastle.geekhomeinside.io
         secretName: forecastle-tls
 
 

@@ -236,7 +236,7 @@ ingress:
   ## Can replace the kubernetes.io/ingress.class annotation on v1.18+
   ingressClassName: ~
 
-  host: longhorn.geekhomeinside.com
+  host: longhorn.geekhomeinside.io
 
   ## Set this to true in order to enable TLS on the ingress record
   tls: true

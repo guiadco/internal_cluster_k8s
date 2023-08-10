@@ -4,7 +4,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   name: kube-prometheus-stack
-  namespace: default
+  namespace: argo-cd
 spec:
   project: default
   sources:
