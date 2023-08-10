@@ -252,7 +252,7 @@ logLevel: info
 logFormat: text
 ## @param policy Modify how DNS records are synchronized between sources and providers (options: sync, upsert-only )
 ##
-policy: sync
+policy: upsert-only
 ## @param registry Registry method to use (options: txt, aws-sd, noop)
 ## ref: https://github.com/kubernetes-sigs/external-dns/blob/master/docs/proposal/registry.md
 ##
