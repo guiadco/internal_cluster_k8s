@@ -169,14 +169,14 @@ aws:
     ## @param aws.credentials.accessKeyIDSecretRef.key Define the key of the secret that stores aws_access_key_id.
     ##
     accessKeyIDSecretRef:
-      name: "aws-token"
+      name: "prod-route53-credentials-secret"
       key: "aws_access_key_id"
     ## AWS secret access key stored in key-value secret
     ## @param aws.credentials.secretAccessKeySecretRef.name Define the name of the secret that stores aws_secret_access_key
     ## @param aws.credentials.secretAccessKeySecretRef.key Define the key of the secret that stores aws_secret_access_key
     ##
     secretAccessKeySecretRef:
-      name: "aws-token"
+      name: "prod-route53-credentials-secret"
       key: "aws_secret_access_key"
   ## @param aws.region When using the AWS provider, `AWS_DEFAULT_REGION` to set in the environment (optional)
   ##
