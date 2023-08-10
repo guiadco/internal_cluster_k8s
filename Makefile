@@ -1,12 +1,11 @@
 .PHONY: jellyfin jellyseerr prowlarr qbittorrent radarr sonarr nginx-ingress forecastle flaresolverr external-dns cert-manager longhorn cert-manager-issuer kube-prometheus-stack
 argocd:
-	@printf "Install argocd? [y/N] " && read ans && [ $${ans:-N} = y ]
 	@helm repo add argo https://argoproj.github.io/argo-helm
 	@helm repo update
-	@helm upgrade --install argo-cd argo/argo-cd -f argo/values.yaml --version 5.41.2
+	@helm upgrade --install argo-cd argo/argo-cd -n argo-cd -f argo/values.yaml --version 5.41.2
 
 argocd-password:
-	@echo Password: $$(kubectl get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+	@echo Password: $$(kubectl get secret argocd-initial-admin-secret -n argo-cd -o jsonpath="{.data.password}" | base64 -d)
 
 jellyfin:
 	@printf "Deploy jellyfin app"
