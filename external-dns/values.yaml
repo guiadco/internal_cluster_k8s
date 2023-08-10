@@ -162,7 +162,7 @@ aws:
     ## @param aws.credentials.secretName Use an existing secret with key "credentials" defined.
     ## This ignores aws.credentials.secretKey, and aws.credentials.accessKey
     ##
-    secretName: "aws-token"
+    secretName: "prod-route53-credentials-secret"
     ## AWS access key id stored in key-value secret.
     ## If aws.credentials.accessKeyIDSecretRef and aws.credentials.secretAccessKeySecretRef defined aws.credentials.secretKey, aws.credentials.accessKey and aws.credentials.secretName are ignored
     ## @param aws.credentials.accessKeyIDSecretRef.name Define the name of the secret that stores aws_access_key_id.

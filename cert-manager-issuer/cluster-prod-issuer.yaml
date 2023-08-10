@@ -16,6 +16,6 @@ spec:
           route53:
             region: eu-west-1
             accessKeyID: AKIASSEXI2IGJL73ENGS
-            apiTokenSecretRef:
+            secretAccessKeySecretRef:
               name: prod-route53-credentials-secret
               key: aws_secret_access_key
