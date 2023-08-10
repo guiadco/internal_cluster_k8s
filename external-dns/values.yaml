@@ -211,7 +211,7 @@ aws:
   evaluateTargetHealth: ""
 ## @param domainFilters Limit possible target zones by domain suffixes (optional)
 ##
-domainFilters: []
+domainFilters: ["geekhomeinside.io"]
 ## @param excludeDomains Exclude subdomains (optional)
 ##
 excludeDomains: []
@@ -266,7 +266,7 @@ txtSuffix: ""
 ## @param txtOwnerId A name that identifies this instance of ExternalDNS. Currently used by registry types: txt & aws-sd (optional)
 ## But other registry types might be added in the future.
 ##
-txtOwnerId: ""
+txtOwnerId: "internal-external-dns"
 ## @param forceTxtOwnerId (backward compatibility) When using the non-TXT registry, it will pass the value defined by `txtOwnerId` down to the application (optional)
 ## This setting added for backward compatibility for
 ## customers who already used bitnami/external-dns helm chart
