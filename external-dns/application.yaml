@@ -11,7 +11,7 @@ spec:
       targetRevision: 6.21.0
       helm:
         valueFiles:
-        - $values/externalDNS/values.yaml
+        - $values/external-dns/values.yaml
         releaseName: external-dns
     - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
       targetRevision: HEAD
