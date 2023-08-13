@@ -340,7 +340,8 @@ alertmanager:
     annotations:
       {
         cert-manager.io/cluster-issuer: prod-issuer,
-        forecastle.stakater.com/appName: Alert-Manager,
+        forecastle.stakater.com/appName: AlertManager,
+        forecastle.stakater.com/icon: "https://camo.githubusercontent.com/13ff7fc7ea6d8a6d98d856da8e3220501b9e6a89620f017d1db039007138e062/687474703a2f2f6465766f70792e696f2f77702d636f6e74656e742f75706c6f6164732f323031392f30322f7a616c2d3230302e706e67",
         forecastle.stakater.com/expose: "true",
       }
 
@@ -901,6 +902,7 @@ grafana:
       {
         cert-manager.io/cluster-issuer: prod-issuer,
         forecastle.stakater.com/appName: Grafana,
+        forecastle.stakater.com/icon: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Grafana_logo.png",
         forecastle.stakater.com/expose: "true",
       }
       # kubernetes.io/ingress.class: nginx
@@ -2703,6 +2705,7 @@ prometheus:
       {
         cert-manager.io/cluster-issuer: prod-issuer,
         forecastle.stakater.com/appName: Prometheus,
+        forecastle.stakater.com/icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/115px-Prometheus_software_logo.svg.png",
         forecastle.stakater.com/expose: "true",
       }
     labels: {}
