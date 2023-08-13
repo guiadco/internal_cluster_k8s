@@ -13,7 +13,7 @@ spec:
     name: in-cluster
   project: default
   source:
-    path: pihole
+    path: pihole``
     repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
     targetRevision: HEAD
   syncPolicy:
