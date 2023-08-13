@@ -4,9 +4,9 @@ metadata:
   name: pihole
   namespace: argo-cd
   # annotations:
-    # argocd.argoproj.io/sync-wave: "-99"
+  # argocd.argoproj.io/sync-wave: "-99"
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: pihole
@@ -14,11 +14,11 @@ spec:
   project: default
   source:
     path: pihole
-    repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
+    repoURL: "git@github.com:guiadco/internal_cluster_k8s.git"
     targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
