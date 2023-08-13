@@ -18,9 +18,6 @@ forecastle:
     title: "Dashboard"
     instanceName:
     crdEnabled: true
-  service:
-    annotations: {}
-    expose: "false"
   ingress:
     enabled: true
     annotations:
