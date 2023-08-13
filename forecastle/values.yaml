@@ -16,7 +16,7 @@ forecastle:
     headerBackground:
     headerForeground:
     title: "Dashboard"
-    instanceName: "Dashboard"
+    instanceName:
     crdEnabled: true
   service:
     annotations: {}
