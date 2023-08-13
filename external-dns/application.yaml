@@ -3,22 +3,19 @@ kind: Application
 metadata:
   name: external-dns
   namespace: argo-cd
+  # annotations:
+    # argocd.argoproj.io/sync-wave: "-99"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
-  sources:
-    - repoURL: https://charts.bitnami.com/bitnami
-      chart: external-dns
-      targetRevision: 6.21.0
-      helm:
-        valueFiles:
-        - $values/external-dns/values.yaml
-        releaseName: external-dns
-    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
-      targetRevision: HEAD
-      ref: values
   destination:
-    server: "https://kubernetes.default.svc"
     namespace: external-dns
+    name: in-cluster
+  project: default
+  source:
+    path: external-dns
+    repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
