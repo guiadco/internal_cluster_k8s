@@ -13,10 +13,7 @@ forecastle:
   config:
     namespaceSelector:
       any: true
-    headerBackground:
-    headerForeground:
     title: "Dashboard"
-    instanceName:
     crdEnabled: true
   ingress:
     enabled: true
