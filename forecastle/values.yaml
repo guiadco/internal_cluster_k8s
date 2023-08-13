@@ -12,7 +12,6 @@ forecastle:
     revisionHistoryLimit: 2
   config:
     namespaceSelector:
-      matchNames: null
       any: true
     headerBackground:
     headerForeground:
