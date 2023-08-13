@@ -5,13 +5,10 @@
 - https://src.fedoraproject.org/rpms/runc
 - Cilium
 - Cert-Manager
-- Cloudflare API Token
-- CSI:
-  - rook ?
-  - CubeFS ?
+- AWS Access ID/Key fr route53
+- NFS Provisioner
 
 # Deployment made with argocd
-
 
 | Application  | Repository                      | Version |
 | ------------ | ------------------------------- | ------- |
