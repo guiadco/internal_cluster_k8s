@@ -1,15 +1,17 @@
+---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
+  annotations:
   namespace: cert-manager
-  name: staging-issuer
+  name: prod-issuer
 spec:
   acme:
     email: guiadco@geekhomeinside.com
     preferredChain: ""
     privateKeySecretRef:
-      name: staging-issuer-account-key
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
+      name: prod-issuer-account-key
+    server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
       - dns01:
           route53:
