@@ -10,112 +10,25 @@ forecastle:
   deployment:
     replicas: 1
     revisionHistoryLimit: 2
-    annotations: {}
-    affinity: {}
-    nodeSelector: {}
-    podSecurityContext:
-      {}
-      # runAsNonRoot: true
-      # runAsUser: 10001
-      # fsGroup: 10001
-      # seccompProfile:
-      #   type: RuntimeDefault
-    securityContext:
-      {}
-      # runAsNonRoot: true
-      # runAsUser: 10002
-      # runAsGroup: 10002
-      # readOnlyRootFilesystem: true
-      # capabilities:
-      #  drop:
-      #    - ALL
-      # privileged: false
-      # allowPrivilegeEscalation: false
-      # seccompProfile:
-      #   type: RuntimeDefault
-    tolerations: {}
-    resources: {}
-    #   requests:
-    #     cpu: 100m
-    #     memory: 32Mi
-    #   limits:
-    #     cpu: 200m
-    #     memory: 64Mi
-  pod:
-    annotations: {}
-  container:
-    securityContext:
-      {}
-      #privileged: false
-      #capabilities:
-      #  drop:
-      #    - ALL
-      #readOnlyRootFilesystem: true
-      #runAsNonRoot: true
-      #runAsUser: 1000
-      #runAsGroup: 1000
-      #allowPrivilegeEscalation: false
-  podDisruptionBudget:
-    {}
-    #minAvailable: 90%
-    #maxUnavailable: 10%
-  networkPolicy:
-    enabled: false
-    ingress:
-      enabled: false
-      # Ingress Controller pods selector labels.
-      # These labels will be used to identify the Ingress Controller pods.
-      # e.g:
-      # podSelector:
-      #   label: nginx-ingress
-      podSelector: {}
-      # Ingress Controller namespace selector labels.
-      # These labels will be used to identify the Ingress Controller namespace.
-      # e.g:
-      # namespaceSelector:
-      #   label: nginx-ingress
-      namespaceSelector: {}
-    egress:
-      # If enabled (`true`), configure `networkPolicy.egress.apiServer` so that
-      # Forecastle can reach the API Server.
-      denyExternalTraffic: false
-      # Configure egress rule that allows traffic toward the Kube API Server.
-      apiServer:
-        # The CP(s) network IP CIDR block.
-        masterCidrBlock: "127.0.0.1/32"
-        # The CP(s) port.
-        masterPort: 443
   config:
     namespaceSelector:
+      matchNames: null
       any: true
     headerBackground:
     headerForeground:
-    title:
-    instanceName:
-    customApps: {}
-  proxy:
-    enabled: false
-  openshiftOauthProxy:
-    enabled: false
-    serviceAccountAnnotations: {}
-    resources: {}
-    #   requests:
-    #     cpu: 100m
-    #     memory: 32Mi
-    #   limits:
-    #     cpu: 200m
-    #     memory: 64Mi
-    # image: stakater/oauth-proxy:v0.0.2
-    securityContext: {}
+    title: "Dashboard"
+    instanceName: "Dashboard"
+    crdEnabled: true
   service:
     annotations: {}
     expose: "false"
   ingress:
     enabled: true
-    annotations: {
-      cert-manager.io/cluster-issuer: prod-issuer,
-      kubernetes.io/ingress.class: nginx
-    }
+    annotations:
+      {
+        cert-manager.io/cluster-issuer: prod-issuer,
+        kubernetes.io/ingress.class: nginx,
+      }
     className: nginx
     hosts:
       - host: forecastle.geekhomeinside.io
@@ -124,18 +37,5 @@ forecastle:
             pathType: Prefix
     tls:
       - hosts:
-        - forecastle.geekhomeinside.io
+          - forecastle.geekhomeinside.io
         secretName: forecastle-tls
-
-
-  route:
-    enabled: false
-    annotations: {}
-    additionalLabels: {}
-    host: ""
-    port:
-      targetPort: http
-    wildcardPolicy: None
-    tls:
-      termination: edge
-      insecureEdgeTerminationPolicy: Redirect

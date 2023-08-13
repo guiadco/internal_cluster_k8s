@@ -10,7 +10,6 @@ ingress:
     forecastle.stakater.com/expose: "true"
     forecastle.stakater.com/icon: "https://wp-cdn.pi-hole.net/wp-content/uploads/2016/12/Vortex-R.webp"
     forecastle.stakater.com/appName: "PiHole"
-    forecastle.stakater.com/group: "Network"
     cert-manager.io/cluster-issuer: "prod-issuer"
   tls:
   - hosts:
