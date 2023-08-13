@@ -1,0 +1,9 @@
+apiVersion: forecastle.stakater.com/v1alpha1
+kind: ForecastleApp
+metadata:
+  name: livebox
+spec:
+  name: "Livebox"
+  group: Network
+  icon: https://proxymedia.woopic.com/api/v1/images/951%2Fstore-fiches%2F6c4%2Ff29%2Fc521ab85cb4db07940910ee93c%2F6c4f29c521ab85cb4db07940910ee93c.png?format=180x180&facedetect=1&quality=100
+  url: https://192.168.1.1/

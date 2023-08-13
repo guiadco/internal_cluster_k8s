@@ -1,0 +1,9 @@
+apiVersion: forecastle.stakater.com/v1alpha1
+kind: ForecastleApp
+metadata:
+  name: cockpit
+spec:
+  name: "Cockpit"
+  group: Server
+  icon: https://linuxundich.de/wp-content/uploads/2014/12/cockpit-fedora-logo.png
+  url: https://geekhomeinside.io:9090/

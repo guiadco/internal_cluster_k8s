@@ -2,9 +2,8 @@ apiVersion: forecastle.stakater.com/v1alpha1
 kind: ForecastleApp
 metadata:
   name: readynas
-  # namespace: forecastle
 spec:
   name: "ReadyNAS"
   group: Storage
   icon: https://www.netgear.fr/images/support/apps/Insight%20App%20Icon.png
-  url: http://yoda.geekhomeinside.io/
+  url: https://yoda.geekhomeinside.io/
