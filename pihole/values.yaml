@@ -13,10 +13,10 @@ ingress:
     cert-manager.io/cluster-issuer: "prod-issuer"
   tls:
   - hosts:
-    - pihole.sol.lan
+    - pihole.geekhomeinside.io
     secretName: pihole-ingress-tls
   hosts:
-  - pihole.sol.lan
+  - pihole.geekhomeinside.io
 persistentVolumeClaim:
   enabled: true
 
