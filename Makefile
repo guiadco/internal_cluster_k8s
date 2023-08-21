@@ -1,4 +1,4 @@
-.PHONY: jellyfin jellyseerr prowlarr qbittorrent radarr sonarr nginx-ingress forecastle flaresolverr external-dns cert-manager kube-prometheus-stack
+.PHONY: pihole jellyfin jellyseerr prowlarr qbittorrent radarr sonarr nginx-ingress forecastle flaresolverr external-dns cert-manager kube-prometheus-stack
 
 all-core: nginx-ingress nfs-provionner external-dns cert-manager kube-prometheus-stack
 all-core-app: forecastle
