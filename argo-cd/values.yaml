@@ -189,7 +189,6 @@ configs:
 
     # -- Timeout to refresh application data as well as target manifests cache
     timeout.hard.reconciliation: 0s
-
     resource.customizations: |
       argoproj.io/Application:
         health.lua: |
@@ -1490,10 +1489,14 @@ server:
   # -- The number of server pods to run
   replicas: 1
 
+  config:
+    statusbadge.enabled: "true"
+    kustomize.buildOptions: --enable-helm --helm-command /etc/custom-helm/helm.sh
+
   ## Argo CD server Horizontal Pod Autoscaler
   autoscaling:
     # -- Enable Horizontal Pod Autoscaler ([HPA]) for the Argo CD server
-    enabled: false
+    enabled: true
     # -- Minimum number of replicas for the Argo CD server [HPA]
     minReplicas: 1
     # -- Maximum number of replicas for the Argo CD server [HPA]
@@ -2078,7 +2081,7 @@ repoServer:
   ## Repo server Horizontal Pod Autoscaler
   autoscaling:
     # -- Enable Horizontal Pod Autoscaler ([HPA]) for the repo server
-    enabled: false
+    enabled: true
     # -- Minimum number of replicas for the repo server [HPA]
     minReplicas: 1
     # -- Maximum number of replicas for the repo server [HPA]
@@ -2206,10 +2209,19 @@ repoServer:
   initContainers: []
 
   # -- Additional volumeMounts to the repo server main container
-  volumeMounts: []
+  volumeMounts:
+    - mountPath: /etc/custom-helm
+      name: helm-cmd
 
   # -- Additional volumes to the repo server pod
-  volumes: []
+  volumes:
+    - name: helm-cmd
+      configMap:
+        name: argo-helm-script
+        items:
+          - key: helm.sh
+            path: helm.sh
+        defaultMode: 0777
   #  - name: argocd-cmp-cm
   #    configMap:
   #      name: argocd-cmp-cm
