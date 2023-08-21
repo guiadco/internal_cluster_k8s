@@ -1,11 +1,58 @@
-.PHONY: jellyfin jellyseerr prowlarr qbittorrent radarr sonarr nginx-ingress forecastle flaresolverr external-dns cert-manager longhorn cert-manager-issuer kube-prometheus-stack
+.PHONY: jellyfin jellyseerr prowlarr qbittorrent radarr sonarr nginx-ingress forecastle flaresolverr external-dns cert-manager kube-prometheus-stack
+
+all-core: nginx-ingress nfs-provionner external-dns cert-manager kube-prometheus-stack
+all-core-app: forecastle
+all-torrent-app: jellyfin jellyseerr prowlarr qbittorrent radarr sonarr flaresolverr
+
+########## ARGOCD ##########
 argocd:
-	@helm repo add argo https://argoproj.github.io/argo-helm
-	@helm repo update
-	@helm upgrade --install argo-cd argo/argo-cd -n argo-cd -f argo/values.yaml --version 5.41.2
+	@printf "Install argocd application\n"
+	pushd argo-cd && \
+		kubectl kustomize --enable-helm | kubectl apply -f - && \
+		popd
 
 argocd-password:
 	@echo Password: $$(kubectl get secret argocd-initial-admin-secret -n argo-cd -o jsonpath="{.data.password}" | base64 -d)
+
+########## FORECASTLE ##########
+
+forecastle:
+	@printf "Deploy forecastle application\n"
+	@kubectl apply -f forecastle/application.yaml
+
+nginx-ingress:
+	@printf "Deploy nginx-ingress application\n"
+	@kubectl apply -f nginx-ingress/application.yaml
+
+########## CORE ##########
+nfs-provionner:
+	@printf "Install nfs-provionner application\n"
+	@kubectl apply -f nfs-provionner/application.yaml
+
+external-dns:
+	@printf "Deploy external-dns application\n"
+	@kubectl apply -f external-dns/application.yaml
+
+external-service:
+	@printf "Deploy external-service application\n"
+	@kubectl apply -f external-service/application.yaml
+
+cert-manager:
+	@printf "Install cert-manager application\n"
+	@kubectl apply -f cert-manager/helm-application.yaml
+
+kube-prometheus-stack:
+	@printf "Install kube-prometheus-stack application\n"
+	@kubectl apply -f kube-prometheus-stack/application.yaml
+
+pihole:
+	@printf "Deploy pihole application\n"
+	@kubectl apply -f pihole/application.yaml
+
+########## TORRENT ##########
+flaresolverr:
+	@printf "Deploy flaresolverr application\n"
+	@kubectl apply -f flaresolverr/application.yaml
 
 jellyfin:
 	@printf "Deploy jellyfin application\n"
@@ -30,36 +77,3 @@ radarr:
 sonarr:
 	@printf "Deploy sonarr application\n"
 	@kubectl apply -f sonarr/application.yaml
-
-nginx-ingress:
-	@printf "Deploy nginx-ingress application\n"
-	@kubectl apply -f nginx-ingress/application.yaml
-
-forecastle:
-	@printf "Deploy forecastle application\n"
-	@kubectl apply -f forecastle/application.yaml
-
-flaresolverr:
-	@printf "Deploy flaresolverr application\n"
-	@kubectl apply -f flaresolverr/application.yaml
-
-external-dns:
-	@printf "Deploy external-dns application\n"
-	@kubectl apply -f external-dns/application.yaml
-
-cert-manager:
-	@printf "Install cert-manager application\n"
-	@kubectl apply -f cert-manager/helm-application.yaml
-
-longhorn:
-	@printf "Install longhorn application\n"
-	@kubectl apply -f longhorn/application.yaml
-
-cert-manager-issuer:
-	@printf "Deploy cert-manager-issuer application\n"
-	@kubectl apply -f cert-manager-issuer/cluster-prod-issuer.yaml
-	@kubectl apply -f cert-manager-issuer/cluster-staging-issuer.yaml
-
-kube-prometheus-stack:
-	@printf "Install kube-prometheus-stack application\n"
-	@kubectl apply -f kube-prometheus-stack/application.yaml
