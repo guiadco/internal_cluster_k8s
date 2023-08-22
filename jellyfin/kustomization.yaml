@@ -1,0 +1,10 @@
+helmCharts:
+  - name: qbittorrent
+    releaseName: qbittorrent
+    version: 15.0.29
+    repo: https://charts.truecharts.org/
+    namespace: mediacenter
+    valuesFile: values.yaml
+
+resources:
+  - ingress.yaml
