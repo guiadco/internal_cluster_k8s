@@ -5,6 +5,3 @@ helmCharts:
     repo: https://bitnami-labs.github.io/sealed-secrets
     namespace: kube-system
     valuesFile: values.yaml
-
-resources:
-  - ingress.yaml
