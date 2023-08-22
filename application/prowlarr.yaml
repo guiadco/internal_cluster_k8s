@@ -3,25 +3,22 @@ kind: Application
 metadata:
   name: prowlarr
   namespace: argo-cd
+  # annotations:
+  # argocd.argoproj.io/sync-wave: "-99"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
-  sources:
-    - repoURL: https://charts.truecharts.org/
-      chart: prowlarr
-      targetRevision: 11.1.1
-      helm:
-        valueFiles:
-        - $values/prowlarr/values.yaml
-        releaseName: prowlarr
-    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
-      targetRevision: HEAD
-      ref: values
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: default
+    namespace: mediacenter
+    name: in-cluster
+  project: default
+  source:
+    path: prowlarr
+    repoURL: "git@github.com:guiadco/internal_cluster_k8s.git"
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
