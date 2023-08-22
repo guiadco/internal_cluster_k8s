@@ -5,7 +5,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "prod-issuer"
     forecastle.stakater.com/expose: "true"
-    # forecastle.stakater.com/icon: "https://raw.githubusercontent.com/jellyfin/jellyfin-ux/c6d7b1fc16c8d62df9125d6463f3d404e0e81bae/branding/SVG/icon-transparent.svg"
+    forecastle.stakater.com/icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/New_qBittorrent_Logo.svg/240px-New_qBittorrent_Logo.svg.png"
     forecastle.stakater.com/appName: "Qbittorrent"
     forecastle.stakater.com/group: "MediaCenter"
 spec:
