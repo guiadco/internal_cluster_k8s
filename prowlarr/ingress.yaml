@@ -5,7 +5,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "prod-issuer"
     forecastle.stakater.com/expose: "true"
-    forecastle.stakater.com/icon: "https://raw.githubusercontent.com/Prowlarr/Prowlarr/blob/develop/Logo/128.png"
+    forecastle.stakater.com/icon: "https://raw.githubusercontent.com/Prowlarr/Prowlarr/develop/Logo/128.png"
     forecastle.stakater.com/appName: "prowlarr"
     forecastle.stakater.com/group: "MediaCenter"
 spec:
