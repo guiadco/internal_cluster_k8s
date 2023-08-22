@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: qbittorrent
+  name: radarr
   namespace: argo-cd
   # annotations:
   # argocd.argoproj.io/sync-wave: "-99"
@@ -13,7 +13,7 @@ spec:
     name: in-cluster
   project: default
   source:
-    path: qbittorrent
+    path: radarr
     repoURL: "git@github.com:guiadco/internal_cluster_k8s.git"
     targetRevision: HEAD
   syncPolicy:

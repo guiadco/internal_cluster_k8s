@@ -3,25 +3,22 @@ kind: Application
 metadata:
   name: sonarr
   namespace: argo-cd
+  # annotations:
+  # argocd.argoproj.io/sync-wave: "-99"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
-  sources:
-    - repoURL: https://charts.truecharts.org/
-      chart: sonarr
-      targetRevision: 15.1.2
-      helm:
-        valueFiles:
-        - $values/sonarr/values.yaml
-        releaseName: sonarr
-    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
-      targetRevision: HEAD
-      ref: values
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: default
+    namespace: mediacenter
+    name: in-cluster
+  project: default
+  source:
+    path: sonarr
+    repoURL: "git@github.com:guiadco/internal_cluster_k8s.git"
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
