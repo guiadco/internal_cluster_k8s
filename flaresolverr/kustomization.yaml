@@ -1,7 +1,7 @@
 helmCharts:
-  - name: qbittorrent
-    releaseName: qbittorrent
-    version: 15.0.29
+  - name: flaresolverr
+    releaseName: flaresolverr
+    version: 9.0.28
     repo: https://charts.truecharts.org/
     namespace: mediacenter
     valuesFile: values.yaml

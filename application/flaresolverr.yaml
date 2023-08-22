@@ -3,25 +3,22 @@ kind: Application
 metadata:
   name: flaresolverr
   namespace: argo-cd
+  # annotations:
+  # argocd.argoproj.io/sync-wave: "-99"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
-  sources:
-    - repoURL: https://charts.truecharts.org/
-      chart: flaresolverr
-      targetRevision: 9.0.28
-      helm:
-        valueFiles:
-        - $values/flaresolverr/values.yaml
-        releaseName: flaresolverr
-    - repoURL: 'git@github.com:guiadco/internal_cluster_k8s.git'
-      targetRevision: HEAD
-      ref: values
   destination:
-    server: "https://kubernetes.default.svc"
-    namespace: default
+    namespace: mediacenter
+    name: in-cluster
+  project: default
+  source:
+    path: flaresolverr
+    repoURL: "git@github.com:guiadco/internal_cluster_k8s.git"
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
