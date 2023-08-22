@@ -1,7 +1,7 @@
 helmCharts:
-  - name: qbittorrent
-    releaseName: qbittorrent
-    version: 15.0.29
+  - name: radarr
+    releaseName: radarr
+    version: 16.1.1
     repo: https://charts.truecharts.org/
     namespace: mediacenter
     valuesFile: values.yaml
