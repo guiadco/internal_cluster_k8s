@@ -6,8 +6,9 @@ helmCharts:
   version: "1.4.0"
   repo: https://charts.longhorn.io
   namespace: longhorn-system
+
 resources:
-- namespace
+- namespace.yaml
 - default-resources.yaml
 
 patches:

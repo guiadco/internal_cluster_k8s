@@ -4,30 +4,37 @@ all-core: nginx-ingress nfs-provionner external-dns cert-manager kube-prometheus
 all-core-app: forecastle
 all-torrent-app: jellyfin jellyseerr prowlarr qbittorrent radarr sonarr flaresolverr
 
+########## BOOTSTRAP ##########
+
+boot: longhorn argocd nginx-ingress external-dns cert-manager kube-prometheus-stack forecastle jellyfin jellyseerr prowlarr qbittorrent radarr sonarr flaresolverr
 ########## ARGOCD ##########
+
+argocd-password:
+	@echo Password: $$(kubectl get secret argocd-initial-admin-secret -n argo-cd -o jsonpath="{.data.password}" | base64 -d)
+
+########## INTRANET ##########
+
+forecastle:
+	@printf "Deploy forecastle application\n"
+	@kubectl apply -f forecastle/application.yaml
+
+########## CORE ##########
+
+longhorn:
+	@printf "Install longhorn application\n"
+	@pushd bootstrap && \
+		kubectl kustomize --enable-helm | kubectl apply -f - && \
+		popd
+
 argocd:
 	@printf "Install argocd application\n"
 	pushd argo-cd && \
 		kubectl kustomize --enable-helm | kubectl apply -f - && \
 		popd
 
-argocd-password:
-	@echo Password: $$(kubectl get secret argocd-initial-admin-secret -n argo-cd -o jsonpath="{.data.password}" | base64 -d)
-
-########## FORECASTLE ##########
-
-forecastle:
-	@printf "Deploy forecastle application\n"
-	@kubectl apply -f forecastle/application.yaml
-
 nginx-ingress:
 	@printf "Deploy nginx-ingress application\n"
 	@kubectl apply -f nginx-ingress/application.yaml
-
-########## CORE ##########
-nfs-provionner:
-	@printf "Install nfs-provionner application\n"
-	@kubectl apply -f nfs-provionner/application.yaml
 
 external-dns:
 	@printf "Deploy external-dns application\n"
