@@ -1,6 +1,0 @@
-apiVersion: v1
-stringData:
-  EXTERNAL_DNS_PIHOLE_PASSWORD: pihole
-kind: Secret
-metadata:
-  name: pihole-admin-secret

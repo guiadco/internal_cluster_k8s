@@ -1,0 +1,19 @@
+helmCharts:
+- name: longhorn
+  includeCRDs: true
+  valuesFile: values.yaml
+  releaseName: longhorn
+  version: "1.4.0"
+  repo: https://charts.longhorn.io
+  namespace: longhorn-system
+resources:
+- namespace
+- default-resources.yaml
+
+patches:
+- target:
+    kind: Ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/http/paths/0/pathType
+      value: Prefix

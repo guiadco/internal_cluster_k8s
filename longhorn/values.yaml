@@ -1,0 +1,68 @@
+persistence:
+  defaultClassReplicaCount: 1
+  defaultDataLocality: best-effort
+  defaultReplicaAutoBalance: best-effort
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  host: longhorn.geekhomeinside.io
+  tls: tls
+  tlsSecret: longhorn-tls
+  annotations:
+    cert-manager.io/cluster-issuer: prod-issuer
+
+defaultSettings:
+  backupTarget: ~
+  backupTargetCredentialSecret: ~
+  allowRecurringJobWhileVolumeDetached: ~
+  createDefaultDiskLabeledNodes: true
+  defaultDataPath: ~
+  defaultDataLocality: ~
+  replicaSoftAntiAffinity: ~
+  replicaAutoBalance: ~
+  storageOverProvisioningPercentage: ~
+  storageMinimalAvailablePercentage: ~
+  upgradeChecker: ~
+  defaultReplicaCount: ~
+  defaultLonghornStaticStorageClass: ~
+  backupstorePollInterval: ~
+  failedBackupTTL: ~
+  restoreVolumeRecurringJobs: ~
+  recurringSuccessfulJobsHistoryLimit: ~
+  recurringFailedJobsHistoryLimit: ~
+  supportBundleFailedHistoryLimit: ~
+  taintToleration: ~
+  systemManagedComponentsNodeSelector: ~
+  priorityClass: ~
+  autoSalvage: ~
+  autoDeletePodWhenVolumeDetachedUnexpectedly: true
+  disableSchedulingOnCordonedNode: ~
+  replicaZoneSoftAntiAffinity: ~
+  nodeDownPodDeletionPolicy: ~
+  allowNodeDrainWithLastHealthyReplica: ~
+  mkfsExt4Parameters: ~
+  disableReplicaRebuild: ~
+  replicaReplenishmentWaitInterval: ~
+  concurrentReplicaRebuildPerNodeLimit: ~
+  concurrentVolumeBackupRestorePerNodeLimit: ~
+  disableRevisionCounter: ~
+  systemManagedPodsImagePullPolicy: ~
+  allowVolumeCreationWithDegradedAvailability: ~
+  autoCleanupSystemGeneratedSnapshot: ~
+  concurrentAutomaticEngineUpgradePerNodeLimit: ~
+  backingImageCleanupWaitInterval: ~
+  backingImageRecoveryWaitInterval: ~
+  guaranteedEngineManagerCPU: ~
+  guaranteedReplicaManagerCPU: ~
+  kubernetesClusterAutoscalerEnabled: ~
+  orphanAutoDeletion: ~
+  storageNetwork: ~
+  deletingConfirmationFlag: ~
+  engineReplicaTimeout: ~
+  snapshotDataIntegrity: ~
+  snapshotDataIntegrityImmediateCheckAfterSnapshotCreation: ~
+  snapshotDataIntegrityCronjob: ~
+  removeSnapshotsDuringFilesystemTrim: ~
+  fastReplicaRebuildEnabled: ~
+  replicaFileSyncHttpClientTimeout: ~
