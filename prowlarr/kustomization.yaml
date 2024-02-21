@@ -1,7 +1,7 @@
 helmCharts:
   - name: prowlarr
     releaseName: prowlarr
-    version: 11.1.1
+    version: 11.1.4
     repo: https://charts.truecharts.org/
     namespace: mediacenter
     valuesFile: values.yaml
