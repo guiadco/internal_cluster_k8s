@@ -1,7 +1,7 @@
 helmCharts:
   - name: jellyfin
     releaseName: jellyfin
-    version: 14.1.11
+    version: 14.1.12
     repo: https://charts.truecharts.org/
     namespace: mediacenter
     valuesFile: values.yaml
