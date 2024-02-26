@@ -9,7 +9,7 @@ helmCharts:
     namespace: argo-cd
     includeCRDs: true
     repo: https://argoproj.github.io/argo-helm
-    version: 5.41.2
+    version: 5.55.0
     valuesFile: values.yaml
 
 configMapGenerator:
