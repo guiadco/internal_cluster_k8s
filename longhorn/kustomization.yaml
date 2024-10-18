@@ -3,7 +3,7 @@ helmCharts:
   includeCRDs: true
   valuesFile: values.yaml
   releaseName: longhorn
-  version: "1.4.0"
+  version: "1.7.2"
   repo: https://charts.longhorn.io
   namespace: longhorn-system
 
